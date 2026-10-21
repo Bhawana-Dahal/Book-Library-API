@@ -17,7 +17,7 @@ public interface BookLibraryKernel {
      * removes a book from the library.
      *
      * @param x
-     *            the book to remove
+     *            book to remove
      */
     void removeBook(Book x);
 
@@ -27,5 +27,10 @@ public interface BookLibraryKernel {
      * @return the size of the library
      */
     int size();
+
+    /**
+     * clears teh shelf.
+     */
+    void clear();
 
 }

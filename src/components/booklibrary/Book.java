@@ -4,30 +4,44 @@ package components.booklibrary;
  * Book class where I make the book object.
  */
 public class Book {
-
-    private String title;
-    private String author;
-    private int rating;
+    /**
+     * title of book.
+     */
+    private final String title;
+    /**
+     * author of book.
+     */
+    private final String author;
+    /**
+     * rating of book.
+     */
+    private final int rating;
 
     /**
      * full constructor.
-     * 
+     *
      * @param t
      *            title
      * @param a
      *            author
      * @param r
      *            rating
+     * @param maxR
+     *            max rating
      */
-    public Book(String t, String a, int r) {
+    public Book(String t, String a, int r, int maxR) {
         this.title = t;
         this.author = a;
-        this.setRating(r);
+        if (r < 0 || r > maxR) {
+            throw new IllegalArgumentException(
+                    "Rating must be between 0 and 5");
+        }
+        this.rating = r;
     }
 
     /**
      * gives you the book title.
-     * 
+     *
      * @return title
      */
     public String getTitle() {
@@ -35,17 +49,8 @@ public class Book {
     }
 
     /**
-     * sets this.title to title.
-     * 
-     * @param title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
      * gives you the book author.
-     * 
+     *
      * @return author
      */
     public String getAuthor() {
@@ -53,33 +58,14 @@ public class Book {
     }
 
     /**
-     * sets this.author to author.
-     * 
-     * @param author
-     */
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    /**
      * gives you the book rating.
-     * 
+     *
      * @return rating.
      */
     public int getRating() {
         return this.rating;
     }
 
-    /**
-     * sets this.rating to rating. ratings must be between 0-5
-     * 
-     * @param rating
-     */
-
-    public void setRating(int rating) {
-        if (rating < 0 || rating > 5) {
-            throw new IllegalArgumentException("Rating must be between 0-5");
-        }
-        this.rating = rating;
-    }
+    //no setters.
+    // users changing things could mess up the shelves.
 }
