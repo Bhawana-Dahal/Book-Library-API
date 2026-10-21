@@ -307,18 +307,18 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+this was a pretty good reflection on what we do in class. Even through we have not acively created interfaces and objects in class, we've talked about them, and everything else was something we've practiced.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+I feel like this was a huge callback to topics covered in high school. I struggled with putting togther a system of finding books and how I wanted to organize them. The million edge cases did not help. I did learn a lot about creating test cases like using assertThrows and trying to use try and catch. It was an oppertunity to try things without worrying about a deadline or correctness.
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
 > is software development something you still enjoy? If not, why not?
 
-<!-- TODO: discuss -->
+This is something I still enjoy, I feel like thats something so easy to question when there is a grade attached to it and you gotta worry about runtime, but I still find software an extremely creative field in terms of all the things you could do and the million ways you could put an idea together.
 
 > One of the challenges of completing the portfolio project is picking up a lot
 > of skills on your own. Some of these skills are, of course, software skills.
@@ -326,25 +326,31 @@ Take some time to fill them out honestly.
 > this process. Therefore, the first question is what skills did you pick up
 > through this process?
 
-<!-- TODO: discuss -->
+I refreshed writing an object and using that object typ. I picked up the habit of writing javadocs and visualizing what I want the data to look like. I also realized I don't read the top of the files too often because I didn't understand how things are inherited and written into the child class.
 
 > The follow-up question is: could you rephrase these skills you picked up
 > as bullet points that you could put on a resume? Try it below.
 
-<!-- TODO: discuss -->
+- OOP
+- Datat Sctructures
+- Interfaces
+- Inheritance
+- Algorithmic thinking
+- JUnit
+- Design
 
 > Next, how has working on this project affected your career trajectory?
 > In other words, do you now hate the topic you picked? Or, are you even more
 > interested in it? Both outcomes are valuable to your personal development.
 
-<!-- TODO: discuss -->
+I don't think anything I did here is speicfically correlated with any job, but I didn't mind doing this. I would still like to work in education technology.
 
 > Finally, consider the skills you've picked up and your current career
 > trajectory. What are some things you could do to continue on your
 > career trajectory? Also, who are some mentors you could contact to help
 > you stay on your path?
 
-<!-- TODO: discuss -->
+I could create something more interactive or engaging. I do plan on fixing this after the feedback like changing the rating to enums, fixing up how to deal with duplicate entries, and making a final for maxRating to fix the magic numbers. I'm not sure who I could contact regarding my career trajectory.
 
 ### Changelog
 
