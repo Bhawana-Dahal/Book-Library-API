@@ -9,15 +9,20 @@ import org.junit.Test;
  * tests the constructors and getters.
  */
 public class BooksTest {
+
+    /**
+     * maxR avoids checkstyle.
+     */
+    private final int maxR = 5;
     /**
      * tests the constructor.
      */
     @Test
     public void testConstructor() {
-        Book book = new Book("bhawana's book", "bhawana", 5);
+        Book book = new Book("bhawana's book", "bhawana", maxR);
         assertEquals("bhawana's book", book.getTitle());
         assertEquals("bhawana", book.getAuthor());
-        assertEquals(5, book.getRating());
+        assertEquals(maxR, book.getRating());
 
     }
 

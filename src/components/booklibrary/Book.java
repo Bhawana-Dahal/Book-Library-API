@@ -17,6 +17,11 @@ public class Book {
      */
     private final int rating;
     /**
+     * max rating.
+     */
+    private final int maxR = 5;
+
+    /**
      * full constructor.
      *
      * @param t
@@ -29,7 +34,7 @@ public class Book {
     public Book(String t, String a, int r) {
         this.title = t;
         this.author = a;
-        if (r < 0 || r > 5) {
+        if (r < 0 || r > this.maxR) {
             throw new IllegalArgumentException(
                     "Rating must be between 0 and 5");
         }
