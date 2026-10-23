@@ -13,6 +13,19 @@ import components.sequence.Sequence;
  * tests kernel methods and duplicate entries.
  */
 public class BookLibrary1Test {
+
+    /**
+     * max rating.
+     */
+    private final int maxR = 5;
+    /**
+     * rating 4 to avoid checkstyle.
+     */
+    private final int four = 4;
+    /**
+     * rating 3 to avoid checkstyle.
+     */
+    private final int three = 3;
     /**
      * checks whether library is empty.
      */
@@ -28,7 +41,7 @@ public class BookLibrary1Test {
     @Test
     public void testIsEmpty2() {
         BookLibrary1 library = new BookLibrary1();
-        library.addBook(new Book("my book", "me", 5));
+        library.addBook(new Book("my book", "me", maxR));
         assertFalse(library.isEmpty());
     }
 
@@ -47,8 +60,8 @@ public class BookLibrary1Test {
     @Test
     public void size1() {
         BookLibrary1 library = new BookLibrary1();
-        library.addBook(new Book("bhawana", "me", 5));
-        library.addBook(new Book("bhawana's 2nd book", "me", 5));
+        library.addBook(new Book("bhawana", "me", maxR));
+        library.addBook(new Book("bhawana's 2nd book", "me", maxR));
         assertEquals(2, library.size());
     }
 
@@ -58,7 +71,7 @@ public class BookLibrary1Test {
     @Test
     public void addBookTest() {
         BookLibrary1 library = new BookLibrary1();
-        library.addBook(new Book("bhawana", "me", 5));
+        library.addBook(new Book("bhawana", "me", maxR));
         assertEquals(1, library.size());
     }
 
@@ -68,8 +81,8 @@ public class BookLibrary1Test {
     @Test
     public void addBookTest2() {
         BookLibrary1 library = new BookLibrary1();
-        library.addBook(new Book("bhawana", "me", 5));
-        library.addBook(new Book("bhawana's 2nd book", "me", 5));
+        library.addBook(new Book("bhawana", "me", maxR));
+        library.addBook(new Book("bhawana's 2nd book", "me", maxR));
         assertEquals(2, library.size());
     }
 
@@ -79,9 +92,9 @@ public class BookLibrary1Test {
     @Test
     public void removeBook() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 5);
-        Book two = new Book("bhawana's 2nd book", "me", 5);
-        Book three = new Book("bhawana's 3nd book", "me", 5);
+        Book one = new Book("bhawana", "me", maxR);
+        Book two = new Book("bhawana's 2nd book", "me", maxR);
+        Book three = new Book("bhawana's 3nd book", "me", maxR);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
@@ -97,9 +110,9 @@ public class BookLibrary1Test {
     @Test
     public void removeBook2() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 5);
-        Book two = new Book("bhawana's 2nd book", "me", 5);
-        Book three = new Book("bhawana's 3nd book", "me", 5);
+        Book one = new Book("bhawana", "me", maxR);
+        Book two = new Book("bhawana's 2nd book", "me", maxR);
+        Book three = new Book("bhawana's 3nd book", "me", maxR);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
@@ -118,9 +131,9 @@ public class BookLibrary1Test {
     @Test
     public void duplicateBookTest() {
         BookLibrary1 library = new BookLibrary1();
-        library.addBook(new Book("Dune", "Frank Herbert", 4));
+        library.addBook(new Book("Dune", "Frank Herbert", four));
         assertThrows(IllegalArgumentException.class,
-                () -> library.addBook(new Book("Dune", "Frank Herbert", 3)));
+                () -> library.addBook(new Book("Dune", "Frank Herbert", three)));
     }
 
     /**
@@ -129,9 +142,9 @@ public class BookLibrary1Test {
     @Test
     public void clearTest() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 5);
-        Book two = new Book("bhawana's 2nd book", "me", 5);
-        Book three = new Book("bhawana's 3nd book", "me", 5);
+        Book one = new Book("bhawana", "me", maxR);
+        Book two = new Book("bhawana's 2nd book", "me", maxR);
+        Book three = new Book("bhawana's 3nd book", "me", maxR);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
@@ -145,9 +158,9 @@ public class BookLibrary1Test {
     @Test
     public void hasBookTest() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 5);
-        Book two = new Book("bhawana's 2nd book", "me", 5);
-        Book three = new Book("bhawana's 3nd book", "me", 5);
+        Book one = new Book("bhawana", "me", maxR);
+        Book two = new Book("bhawana's 2nd book", "me", maxR);
+        Book three = new Book("bhawana's 3nd book", "me", maxR);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
@@ -160,9 +173,9 @@ public class BookLibrary1Test {
     @Test
     public void hasBookTest2() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 5);
-        Book two = new Book("bhawana's 2nd book", "me", 5);
-        Book three = new Book("bhawana's 3nd book", "me", 5);
+        Book one = new Book("bhawana", "me", maxR);
+        Book two = new Book("bhawana's 2nd book", "me", maxR);
+        Book three = new Book("bhawana's 3nd book", "me", maxR);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
@@ -176,14 +189,14 @@ public class BookLibrary1Test {
     @Test
     public void getBooksByRatingTest() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 3);
-        Book two = new Book("bhawana's 2nd book", "me", 5);
-        Book three = new Book("bhawana's 3nd book", "me", 5);
+        Book one = new Book("bhawana", "me", three);
+        Book two = new Book("bhawana's 2nd book", "me", maxR);
+        Book three = new Book("bhawana's 3nd book", "me", maxR);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
 
-        Sequence<Book> fiveStarBooks = library.getBooksByRating(5);
+        Sequence<Book> fiveStarBooks = library.getBooksByRating(maxR);
 
         assertEquals(2, fiveStarBooks.length());
         assertEquals("bhawana's 2nd book", fiveStarBooks.entry(0).getTitle());
@@ -196,14 +209,14 @@ public class BookLibrary1Test {
     @Test
     public void getBooksByRatingTest2() {
         BookLibrary1 library = new BookLibrary1();
-        Book one = new Book("bhawana", "me", 3);
+        Book one = new Book("bhawana", "me", three);
         Book two = new Book("bhawana's 2nd book", "me", 2);
         Book three = new Book("bhawana's 3nd book", "me", 1);
         library.addBook(one);
         library.addBook(two);
         library.addBook(three);
 
-        Sequence<Book> fiveStarBooks = library.getBooksByRating(5);
+        Sequence<Book> fiveStarBooks = library.getBooksByRating(maxR);
 
         assertEquals(0, fiveStarBooks.length());
     }
@@ -214,7 +227,7 @@ public class BookLibrary1Test {
     @Test
     public void removeMissingBookTest() {
         BookLibrary1 library = new BookLibrary1();
-        Book missing = new Book("Dune", "Frank Herbert", 4);
+        Book missing = new Book("Dune", "Frank Herbert", four);
         assertThrows(IllegalArgumentException.class,
                 () -> library.removeBook(missing));
     }
