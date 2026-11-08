@@ -15,6 +15,42 @@ public class BookLibrary1 extends BookLibrarySecondary {
     private Map<Integer, Sequence<Book>> rep;
 
     /**
+     * @param shelf
+     *            the shelf to search.
+     * @param x
+     *            the book we're booking for.
+     * @return the index of the same book in shelf. It will return -1 if no such
+     *         book exists.
+     */
+    private static int indexOf(Sequence<Book> shelf, Book x) {
+        int i = 0;
+        while (i < shelf.length() && !x.isSameBook(shelf.entry(i))) {
+            i++;
+        }
+        return i < shelf.length() ? i : -1;
+        //return i if on shelf, -1 if not. This could also be invalid syntax.
+    }
+
+    /**
+     * finds which shelf holds same book as x. finds x at any rating.
+     * 
+     * @param x
+     *            the book to look for.
+     * @return the rating of the book. -1 is not found.
+     */
+    private int findRating(Book x) {
+        int found = -1;
+        int r = 0;
+        while (found < 0 && r <= Book.MAX_RATING) {
+            if (this.rep.hasKey(r) && indexOf(this.rep.value(r), x) >= 0) {
+                found = r;
+            }
+            r++;
+        }
+        return found;
+    }
+
+    /**
      * creates a new representation.
      */
     public BookLibrary1() {
@@ -22,19 +58,14 @@ public class BookLibrary1 extends BookLibrarySecondary {
     }
 
     /**
-     * max rating.
-     */
-    private final int maxR = 5;
-
-    /**
      * gives the size of the shelf. ratings go from 0-5.
-     *
+     * 
      * @return number of books on shelf.
      */
     @Override
     public int size() {
         int total = 0;
-        for (int rating = 0; rating <= this.maxR; rating++) {
+        for (int rating = 0; rating <= Book.MAX_RATING; rating++) {
             if (this.rep.hasKey(rating)) {
                 total += this.rep.value(rating).length();
             }
@@ -64,20 +95,17 @@ public class BookLibrary1 extends BookLibrarySecondary {
             throw new IllegalArgumentException("Book already exists");
         } else {
             int rating = x.getRating();
-            String title = x.getTitle();
-            if (this.rep.hasKey(rating)) {
-                Sequence<Book> books = this.rep.value(rating);
-                int i = 0;
-                while (i < books.length() && title
-                        .compareToIgnoreCase(books.entry(i).getTitle()) > 0) {
-                    i++;
-                }
-                books.add(i, x);
-            } else {
-                Sequence<Book> books = new Sequence1L<Book>();
-                books.add(0, x);
-                this.rep.add(rating, books);
+            if (!this.rep.hasKey(rating)) {
+                this.rep.add(rating, new Sequence1L<Book>());
             }
+            Sequence<Book> shelf = this.rep.value(rating);
+            // sort.
+            int i = 0;
+            while (i < shelf.length() && x.getTitle()
+                    .compareToIgnoreCase(shelf.entry(i).getTitle()) > 0) {
+                i++;
+            }
+            shelf.add(i, x);
         }
     }
 
@@ -91,21 +119,15 @@ public class BookLibrary1 extends BookLibrarySecondary {
      */
     @Override
     public void removeBook(Book x) {
-        int rating = x.getRating();
-        if (this.rep.hasKey(rating)) {
-            Sequence<Book> books = this.rep.value(rating);
-            String title = x.getTitle();
-            String author = x.getAuthor();
-            int i = 0;
-            while (i < books.length() && (title
-                    .compareToIgnoreCase(books.entry(i).getTitle()) != 0
-                    || author.compareToIgnoreCase(
-                            books.entry(i).getAuthor()) != 0)) {
-                i++;
-            }
-            books.remove(i);
-        } else {
+        int rating = this.findRating(x);
+        if (rating < 0) {
             throw new IllegalArgumentException("Book does not exist");
+        } else {
+            Sequence<Book> shelf = this.rep.value(rating);
+            shelf.remove(indexOf(shelf, x));
+            if (shelf.length() == 0) {
+                this.rep.remove(rating); //no empties.
+            }
         }
     }
 
@@ -120,17 +142,15 @@ public class BookLibrary1 extends BookLibrarySecondary {
      */
     @Override
     public Sequence<Book> getBooksByRating(int rating) {
-        if (rating < 0 || rating > this.maxR) {
+        if (rating < 0 || rating > Book.MAX_RATING) {
             throw new IllegalArgumentException(
                     "Rating must be between 0 and 5");
         }
         Sequence<Book> result = new Sequence1L<>();
         if (this.rep.hasKey(rating)) {
-            Sequence<Book> books = this.rep.value(rating);
-            int i = 0;
-            while (i < books.length()) {
-                result.add(i, books.entry(i));
-                i++;
+            Sequence<Book> shelf = this.rep.value(rating);
+            for (int i = 0; i < shelf.length(); i++) {
+                result.add(i, shelf.entry(i));
             }
         }
         return result;
@@ -146,25 +166,6 @@ public class BookLibrary1 extends BookLibrarySecondary {
      */
     @Override
     public boolean hasBook(Book x) {
-        for (int rating = 0; rating <= this.maxR; rating++) {
-            if (this.rep.hasKey(rating)) {
-                Sequence<Book> books = this.rep.value(rating);
-
-                int i = 0;
-                while (i < books.length() && (x.getTitle()
-                        .compareToIgnoreCase(books.entry(i).getTitle()) != 0
-                        || x.getAuthor().compareToIgnoreCase(
-                                books.entry(i).getAuthor()) != 0)) {
-                    i++;
-                }
-
-                if (i < books.length()) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-
+        return this.findRating(x) >= 0;
     }
 }

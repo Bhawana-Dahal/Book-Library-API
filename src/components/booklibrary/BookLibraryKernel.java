@@ -1,5 +1,7 @@
 package components.booklibrary;
 
+import components.sequence.Sequence;
+
 /**
  * BookLibraryKernel. stores basic methods for the library
  */
@@ -22,9 +24,25 @@ public interface BookLibraryKernel {
     void removeBook(Book x);
 
     /**
-     * returns the size of the library.
-     *
-     * @return the size of the library
+     * reports whether or not a book is on the shelf.
+     * 
+     * @param x
+     *            the book its booking for.
+     * @return if Book is there.
+     */
+    boolean hasBook(Book x);
+
+    /**
+     * returns a sperate sequence of all books given the rating.
+     * 
+     * @param rating
+     *            an integer between 0-5.
+     * @return a new sequence of books with said rating.
+     */
+    Sequence<Book> getBooksByRating(int rating);
+
+    /**
+     * @return the number of books in this.
      */
     int size();
 

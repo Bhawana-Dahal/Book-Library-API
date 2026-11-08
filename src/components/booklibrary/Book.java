@@ -19,7 +19,7 @@ public class Book {
     /**
      * max rating.
      */
-    private final int maxR = 5;
+    public static final int MAX_RATING = 5;
 
     /**
      * full constructor.
@@ -32,12 +32,15 @@ public class Book {
      *            rating
      */
     public Book(String t, String a, int r) {
-        this.title = t;
-        this.author = a;
-        if (r < 0 || r > this.maxR) {
+        if (t == null || a == null) {
+            throw new IllegalArgumentException("Must include title and author");
+        }
+        if (r < 0 || r > MAX_RATING) {
             throw new IllegalArgumentException(
                     "Rating must be between 0 and 5");
         }
+        this.title = t;
+        this.author = a;
         this.rating = r;
     }
 
@@ -70,4 +73,27 @@ public class Book {
 
     //no setters.
     // users changing things could mess up the shelves.
+
+    /**
+     * checks for doubles.
+     * 
+     * @param other
+     *            is other book.
+     * @return whether 2 books are the same.
+     */
+    public boolean isSameBook(Book other) {
+        return this.title.equalsIgnoreCase(other.title)
+                && this.author.equalsIgnoreCase(other.author);
+    }
+
+    /**
+     * ex: The Hunger Games By Suzanne Collins (5/5).
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return this.title + " by " + this.author + " (" + this.rating + "/"
+                + MAX_RATING + ")";
+    }
 }
