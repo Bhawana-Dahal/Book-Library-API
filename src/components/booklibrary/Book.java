@@ -76,7 +76,7 @@ public class Book {
 
     /**
      * checks for doubles.
-     * 
+     *
      * @param other
      *            is other book.
      * @return whether 2 books are the same.
@@ -88,7 +88,7 @@ public class Book {
 
     /**
      * ex: The Hunger Games By Suzanne Collins (5/5).
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override
