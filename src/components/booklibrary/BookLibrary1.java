@@ -33,7 +33,7 @@ public class BookLibrary1 extends BookLibrarySecondary {
 
     /**
      * finds which shelf holds same book as x. finds x at any rating.
-     * 
+     *
      * @param x
      *            the book to look for.
      * @return the rating of the book. -1 is not found.
@@ -59,7 +59,7 @@ public class BookLibrary1 extends BookLibrarySecondary {
 
     /**
      * gives the size of the shelf. ratings go from 0-5.
-     * 
+     *
      * @return number of books on shelf.
      */
     @Override

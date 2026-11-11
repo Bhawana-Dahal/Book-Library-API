@@ -25,7 +25,7 @@ public interface BookLibraryKernel {
 
     /**
      * reports whether or not a book is on the shelf.
-     * 
+     *
      * @param x
      *            the book its booking for.
      * @return if Book is there.
@@ -34,7 +34,7 @@ public interface BookLibraryKernel {
 
     /**
      * returns a sperate sequence of all books given the rating.
-     * 
+     *
      * @param rating
      *            an integer between 0-5.
      * @return a new sequence of books with said rating.
