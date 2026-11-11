@@ -28,6 +28,7 @@ public class BookLibrary1 extends BookLibrarySecondary {
             i++;
         }
         return i < shelf.length() ? i : -1;
+        //if else?
         //return i if on shelf, -1 if not. This could also be invalid syntax.
     }
 
