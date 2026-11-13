@@ -7,7 +7,6 @@ public interface ImplementerInterface {
 
     /**
      * add a book.
-     * 
      * @param x
      *            book to add.
      */
@@ -16,7 +15,6 @@ public interface ImplementerInterface {
     /**
      * removes and returns highest rated book. highest rated book is at the
      * front, sorted alphabetically.
-     * 
      * @return best book.
      */
     Book dequeue();
