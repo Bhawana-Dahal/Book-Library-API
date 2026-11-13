@@ -77,19 +77,38 @@ public class Book {
     /**
      * checks for doubles.
      *
-     * @param other
+     * @param obj
      *            is other book.
      * @return whether 2 books are the same.
      */
-    public boolean isSameBook(Book other) {
-        return this.title.equalsIgnoreCase(other.title)
-                && this.author.equalsIgnoreCase(other.author);
+    @Override
+    public boolean equals(Object obj) {
+        boolean verdict = false;
+        if (this == obj) {
+            verdict = true;
+        } else if (obj != null && this.getClass() == obj.getClass()) {
+            Book two = (Book) obj;
+            verdict = this.title.equalsIgnoreCase(two.title)
+                    && this.author.equalsIgnoreCase(two.author);
+        }
+        return verdict;
+    }
+
+    /**
+     * equal books have the same bucket.
+     * 
+     * @return the hashCode.
+     */
+    @Override
+    public int hashCode() {
+        return this.title.toLowerCase().hashCode()
+                + this.author.toLowerCase().hashCode() + this.rating;
     }
 
     /**
      * ex: The Hunger Games By Suzanne Collins (5/5).
      *
-     * @see java.lang.Object#toString()
+     * @see java.lang.Object#toString() idk what @see is, but it autofilled
      */
     @Override
     public String toString() {

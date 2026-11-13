@@ -24,7 +24,7 @@ public class BookLibrary1 extends BookLibrarySecondary {
      */
     private static int indexOf(Sequence<Book> shelf, Book x) {
         int i = 0;
-        while (i < shelf.length() && !x.isSameBook(shelf.entry(i))) {
+        while (i < shelf.length() && !x.equals(shelf.entry(i))) {
             i++;
         }
         return i < shelf.length() ? i : -1;
