@@ -8,7 +8,7 @@ import components.sequence.Sequence1L;
 /**
  * queue of books in rating order.
  */
-public class ImplementerUse {
+public class ImplementerUse implements ImplementerInterface {
 
     /**
      * the representation.
@@ -28,6 +28,7 @@ public class ImplementerUse {
      * @param x
      *            book to add.
      */
+    @Override
     public void enqueue(Book x) {
         int rating = x.getRating();
         if (!this.rep.hasKey(rating)) {
@@ -42,6 +43,7 @@ public class ImplementerUse {
      *
      * @return your top book.
      */
+    @Override
     public Book dequeue() {
         if (this.length() == 0) {
             System.out.println("Queue is empty");
@@ -63,6 +65,7 @@ public class ImplementerUse {
      *
      * @return how long it is.
      */
+    @Override
     public int length() {
         int total = 0;
         for (int i = 0; i < Book.MAX_RATING; i++) {
@@ -81,9 +84,12 @@ public class ImplementerUse {
     public static void main(String[] args) {
         ImplementerUse top = new ImplementerUse();
         top.enqueue(new Book("ACOTAR", "Sarah J Maas", 4));
+        top.enqueue(new Book("Magic Tree House", "Mary Pope Osbourne", 3));
         top.enqueue(new Book("Red Rising", "Pierce Brown", 4));
+        top.enqueue(new Book("Binding 13", "Chloe Walsh", Book.MAX_RATING));
         top.enqueue(new Book("The Hunger Games", "Suzanne Collins",
                 Book.MAX_RATING));
+        top.enqueue(new Book("Rites Of The Starling", "Deveny Perry", 3));
         int i = 1;
         while (top.length() > 0) {
             System.out.println(i + ". " + top.dequeue());
